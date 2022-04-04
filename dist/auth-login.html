@@ -5,11 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - London Computers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="assets/css/bootstrap.css">
     <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="assets/css/app.css">
     <link rel="stylesheet" href="assets/css/pages/auth.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
+<link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+
+   <script src="assets/js/custom/config.js"></script>
+   <script src="assets/js/custom/utils.js"></script>
+  
+<script src="assets/vendors/toastify/toastify.js"></script>
+<script src="assets/js/extensions/toastify.js"></script>
+  
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+	  <script src="assets/js/custom/http.js"></script>
+    <script src="assets/js/custom/common.js"></script>
+ <script src="assets/js/custom/sign-in.js"></script>
+ 
 </head>
 
 <body>
@@ -23,15 +39,15 @@
             <h4 >Log in.</h4>
             <p >Log in with your data that you entered during registration.</p>
 
-            <form >
+            
                 <div class="form-group position-relative has-icon-left mb-2">
-                    <input type="text" class="form-control form-control-l" placeholder="Username">
+                    <input id="txtEmail" type="text" text="03492055477" class="form-control form-control-l" placeholder="Username">
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>
                     </div>
                 </div>
                 <div class="form-group position-relative has-icon-left mb-2">
-                    <input type="password" class="form-control form-control-l" placeholder="Password">
+                    <input id="txtPassword" type="password" text="123" class="form-control form-control-l" placeholder="Password">
                     <div class="form-control-icon">
                         <i class="bi bi-shield-lock"></i>
                     </div>
@@ -42,8 +58,10 @@
                         Keep me logged in
                     </label>
                 </div>
-                <button id="btnLogin" class="btn btn-primary btn-block btn-lg shadow-lg mt-4">Log in</button>
-            </form>
+                <button id="btnLogin" class="btn btn-primary btn-block btn-lg shadow-lg mt-4">Log in
+				</button>
+				
+           
             <div class="text-center mt-2 text-lg fs-10">
                 <p class="text-gray-600">Don't have an account? <a href="auth-login.html" class="font-bold">Sign
                         up</a>.</p>

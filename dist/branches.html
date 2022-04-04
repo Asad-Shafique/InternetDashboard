@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Computers</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+	<link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+	
+	<link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+<style>
+    table.dataTable td{
+        padding: 15px 8px;
+    }
+    .fontawesome-icons .the-icon svg {
+        font-size: 24px;
+    }
+</style>
+	
+	
+	
+	<script src="assets/js/custom/config.js"></script>
+    <script src="assets/js/custom/utils.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
+    <script src="assets/js/extensions/toastify.js"></script>
+     <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+    <script src="assets/js/custom/common.js"></script>
+	  <script src="assets/js/custom/http.js"></script>
+   <script src="assets/js/custom/branches.js"></script>
+</head>
+
+<body id="branches">
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+    <div class="sidebar-header">
+           <div class="logo">
+                <a href="index.html"><img src="assets/images/logo/logo.png" height='5' alt="Logo" srcset=""></a>
+            </div>
+            <div class="toggler">
+                <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+            </div>
+    </div>
+    <div class="sidebar-menu">
+        <ul class="menu">
+            <li class="sidebar-title">Menu</li>
+            
+            <li
+                class="sidebar-item">
+                <a href="dashboard.html" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+			 <li
+                class="sidebar-item active">
+                <a href="branches.html" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Branches</span>
+                </a>
+            </li>
+			 <li
+                class="sidebar-item">
+                <a href="dashboard.html" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+			<li
+                class="sidebar-item">
+                <a href="dashboard.html" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Complaints</span>
+                </a>
+            </li>
+			<li
+                class="sidebar-item">
+                <a href="dashboard.html" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>Company Settings</span>
+                </a>
+            </li>
+			
+		
+        </ul>
+		<footer>
+                <div class="footer clearfix mb- text-muted">
+                    <div style="text-align:center">
+                        <p>2022 &copy; Cybvegit</p>
+                    </div>
+                    
+                </div>
+            </footer>
+    </div>
+    <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+</div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            
+<div class="page-heading">
+    <h3>Branches</h3>
+	
+</div>
+<div class="page-content">
+    <section class="row">
+      
+	     <button style="margin-left:6px;  margin-bottom:10px;width:150px;height:35px;display: inline-block;vertical-align: middle;line-height: normal;" id="btnCreateBranch" class="btn btn-primary btn-block btn-s shadow-s mt-4"
+		 data-bs-toggle="modal"
+                                    data-bs-target="#inlineForm"
+		 
+		 >Create Branch
+				</button>
+            
+   <div class="card">
+            <div class="card-body">
+			    <table class="table" id="dtBranchesTable">
+                    <thead>
+                        <tr>
+                            <th style="width:120px;" >Branch Name</th>
+                            <th>Branch Address</th>
+                            <th>Area</th>
+                            <th>City</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dtBranches">
+                       
+                          
+                        </tr>
+                       </tbody>
+                </table>
+            </div>
+        </div>
+    <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog-centered"
+                                    aria-labelledby="myModalLabel33" aria-hidden="true">
+                                    <div   class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+                                        role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="myModalLabel33">Create Branch</h4>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <i data-feather="x"></i>
+                                                </button>
+                                            </div>
+                                            <form action="#">
+                                                <div  id="modelBody" class="modal-body">
+                                                    <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>Branch Name</label>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" placeholder="Name"
+                                                        id="first-name-icon">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-person"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+										</div>
+										<div class="row">
+                                        <div class="col-md-2">
+                                            <label>Branch Address</label>
+                                        </div>
+										
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="email" class="form-control" placeholder="Email"
+                                                        id="first-name-icon">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-envelope"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+										</div>
+										<div class="row">
+                                        <div class="col-md-2">
+                                            <label>Branch Area</label>
+                                        </div>
+										
+                                        <div class="col-md-4">
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" href="#">Action</a></li>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    <li><a class="dropdown-item" href="#">Something else here</a></li>
+  </ul>
+</div>
+                                                </div>
+                                            </div>
+                                        </div>
+										</div>
+										
+										<div class="row">
+										<div class="col-md-2">
+										
+                                            <label>Branch Latitude	</label>
+                                        </div>
+                                        <div class="col-sm-2">
+										
+                                            <div class="form-group has-icon-left">
+                                                <div class="position-relative">
+                                                    <input type="text" class="form-control" placeholder="Name"
+                                                        id="first-name-icon">
+                                                    <div class="form-control-icon">
+                                                        <i class="bi bi-person"></i>
+                                                    </div>
+													 
+										
+                                                </div>
+                                            </div>
+                                       </div>
+									    <div class="col-md-8">
+									    <div style="width:100%; height:300px;" id="map"></div>
+									   </div>
+									   </div>
+									  
+                                     
+                                        		
+												
+												
+												</div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+	  </section>
+</div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Cybvegit</p>
+                    </div>
+                    
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+<script src="assets/vendors/apexcharts/apexcharts.js"></script>
+<script src="assets/js/pages/dashboard.js"></script>
+
+    <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    
+<script src="assets/vendors/jquery/jquery.min.js"></script>
+<script src="assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
+<script src="assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
+<script src="assets/vendors/fontawesome/all.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+
+</body>
+
+</html>
