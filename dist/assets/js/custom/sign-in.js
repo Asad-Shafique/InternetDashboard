@@ -36,9 +36,10 @@ $(document).ready(function(){
            // Notice! JSONP <-- P (lowercase)
             success:function(json){
              	if(json.success){
-					if(json.data[0].roleType==ROLE_TYPE_BRANCH_TECHNICIAN||
-					json.data[0].roleType==ROLE_TYPE_COMPANY_ADMIN||
-					json.data[0].roleType==ROLE_TYPE_BRANCH_ADMIN){
+					if(//json.data[0].roleType==ROLE_TYPE_BRANCH_TECHNICIAN||
+					json.data[0].roleType==ROLE_TYPE_COMPANY_ADMIN
+					//||json.data[0].roleType==ROLE_TYPE_BRANCH_ADMIN
+                    ){
 					persistanceMemoryStore("userInfo",JSON.stringify(json.data[0]));
              		navigate(DASHBOARD_PAGE);
 					}

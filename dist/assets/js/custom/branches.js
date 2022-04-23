@@ -1,3 +1,4 @@
+// $('#sidebar').toggleClass('active');
 let userObj = null;
 $(document).ready(function () {
     userObj = JSON.parse(persistanceMemoryRetrieve("userInfo"));
@@ -10,6 +11,7 @@ $(document).ready(function () {
         showToastError(NOT_AUTHORIZED)
         navigate(SIGNIN_PAGE);
     }
+    setHeader();
     roleBasedView();
     getAreas();
     initilizeDataTable();
@@ -17,6 +19,9 @@ $(document).ready(function () {
     $('.modal-body').css('height', $(window).height());
     $('.modal-body').css('width', $(window).width());
     $("#btnCreateBranch").click(function () {
+       
+       
+       
         $('#btnDeleteBranch').hide();
    
         branchId = null;
@@ -151,12 +156,12 @@ function initilizeDataTable() {
 }
 
 
-let branchId = null;
+let userId = null;
 function getBranches() {
 
     table.clear().draw();
     $("#dtBranches").html(loader);
-    get(BASE_URL + END_PONT_GET_COMPANY_BRANCHES,
+    get(BASE_URL + END_PONT_GET_COMPANY_BRANCHES+userObj.userId,
         function success(json) {
             console.log(JSON.stringify(json));
             var row = "";
@@ -174,7 +179,7 @@ function getBranches() {
                 }
 
                 $("#dtBranchesTable tbody").html(row);
-                table.row
+               
                 table.draw();
             } else {
 
