@@ -47,14 +47,14 @@ $(document).ready(function () {
     });
     $("#btnUpdateComplaint").click(function () {
         let valueSelected = $('#dropdownStatusModal :selected').val()
-        
+
         let obj = {
-            'userId':userObj.userId,
-            'complaintId':complaintId,
-            'status':valueSelected
+            'userId': userObj.userId,
+            'complaintId': complaintId,
+            'status': valueSelected
         }
 
-         updateComplaint(obj)
+        updateComplaint(obj)
 
     });
 
@@ -389,7 +389,7 @@ function initilizeDataTable() {
         $('#txtComaplaintDateTime').text(table.row(this).data()[5])
         $('#txtAcceptedDateTime').text(table.row(this).data()[10])
         $("#dropdownStatusModal").val(table.row(this).data()[15]).trigger('change');
-      
+
         let status = table.row(this).data()[14]
         let className = status == 'Pending' ? 'badge bg-warning' :
             status == 'In Progress' ? 'badge bg-info' :
@@ -447,53 +447,61 @@ function getComplaints() {
     $("#dtComplaint").html(loader);
     get(BASE_URL + END_POINT_GET_COMPLAINT_FOR_AGENT + userObj.userId + "&branchId=" + branchId,
         function success(json) {
-            var row = '';
-            var className = 'badge bg-success';
 
-            for (let x = 0; x < json.data.length; x++) {
-                className = json.data[x].status == 'Pending' ? 'badge bg-warning' :
-                    json.data[x].status == 'In Progress' ? 'badge bg-info' :
-                        json.data[x].status == 'Resolved' ? 'badge bg-success' : 'badge bg-danger';
+            if (json.success) {
+                var row = '';
+                var className = 'badge bg-success';
 
-                table.row.add(
-                    [json.data[x].customerName,
-                    json.data[x].customerMobile,
-                    json.data[x].customerAddress,
-                    json.data[x].complaintTitle,
-                    json.data[x].complaintDesc + 'asdlkasdjlkajsdlaksjdlkasjdl alsdkjasldkjaslkd alsdkjasldkjasd alskdasldkj ',
-                    json.data[x].createdDateTime,
-                    json.data[x].technicianName,
-                    '</td><td> <span class="' + className + '">' + json.data[x].status + '</span></td>',
+                for (let x = 0; x < json.data.length; x++) {
+                    className = json.data[x].status == 'Pending' ? 'badge bg-warning' :
+                        json.data[x].status == 'In Progress' ? 'badge bg-info' :
+                            json.data[x].status == 'Resolved' ? 'badge bg-success' : 'badge bg-danger';
 
-                    json.data[x].complaintId,
-                    json.data[x].acceptBy,
-                    json.data[x].acceptedDateTime,
-                    json.data[x].lat,
-                    json.data[x].lng,
-                    json.data[x].branchName,
-                    json.data[x].status,
-                    json.data[x].statusId
+                    table.row.add(
+                        [json.data[x].customerName,
+                        json.data[x].customerMobile,
+                        json.data[x].customerAddress,
+                        json.data[x].complaintTitle,
+                        json.data[x].complaintDesc ,
+                        json.data[x].createdDateTime,
+                        json.data[x].technicianName,
+                        '</td><td> <span class="' + className + '">' + json.data[x].status + '</span></td>',
 
-
-
-
+                        json.data[x].complaintId,
+                        json.data[x].acceptBy,
+                        json.data[x].acceptedDateTime,
+                        json.data[x].lat,
+                        json.data[x].lng,
+                        json.data[x].branchName,
+                        json.data[x].status,
+                        json.data[x].statusId
 
 
-                    ]
-                ).draw(true);
 
-                //       row += '<tr><td><a style=" text-decoration: underline;cursor: pointer;color:blue; "  >'+json.data[x].branchName+'</a>' + json.data[x].branchAddress + '</td><td>' + json.data[x].areaName + '</td>	<td>' + json.data[x].cityName + '</td><td> <span class="badge bg-success">Active</span></td> </tr>';
+
+
+
+                        ]
+                    ).draw(true);
+
+                    //       row += '<tr><td><a style=" text-decoration: underline;cursor: pointer;color:blue; "  >'+json.data[x].branchName+'</a>' + json.data[x].branchAddress + '</td><td>' + json.data[x].areaName + '</td>	<td>' + json.data[x].cityName + '</td><td> <span class="badge bg-success">Active</span></td> </tr>';
+                }
+
+                $("#dtComplaintTable tbody").html(row);
+
+                table.draw();
+            }else{
+                $("#dtComplaint").html(noDataFound);
+
+                
             }
-
-            $("#dtComplaintTable tbody").html(row);
-
-            table.draw();
 
         },
         function error(error) {
 
-
+ $("#dtComplaint").html(loader);
         });
+
 }
 function getCompanyRoles() {
     get(BASE_URL + END_PONT_GET_COMPANY_ROLES,

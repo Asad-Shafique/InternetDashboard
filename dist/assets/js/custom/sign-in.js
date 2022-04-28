@@ -2,7 +2,11 @@
 $(document).ready(function(){
 
 
-      
+    $("#txtPassword").keyup(function(event) {
+        if (event.keyCode === 13) {
+            $("#btnLogin").click();
+        }
+    });
 
     var signInUrl=BASE_URL+END_PONT_SIGN_IN;
 	$("#btnLogin").click(function(){

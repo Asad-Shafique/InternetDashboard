@@ -1,4 +1,5 @@
 var loader = '<span id="loader" class="spinner-border spinner-border-sm" role="status" aria-hidden="false" ></span> Loading...';
+var noDataFound = '<h9>No Data Found</h9>';
 
 function setHeader(){
    var obj = JSON.parse(persistanceMemoryRetrieve("userInfo"));
