@@ -5,6 +5,7 @@ var iconType;
 $(document).ready(function () {
 
 	userObj = JSON.parse(persistanceMemoryRetrieve("userInfo"));
+	console.log(userObj)
 	try {
 		if (userObj.userId == undefined || userObj.userId == '') {
 			showToastError(NOT_AUTHORIZED)

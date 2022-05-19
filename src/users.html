@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Computers</title>
+    <link rel = "icon" href = 
+    "http://194.233.69.219/general/londoncomputers_logo.png" 
+    >
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <style>
+        table.dataTable td {
+            padding: 15px 8px;
+        }
+
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
+    </style>
+
+
+
+    <script src="assets/js/custom/config.js"></script>
+    <script src="assets/js/custom/utils.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
+    <script src="assets/js/extensions/toastify.js"></script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+    <script src="assets/js/custom/common.js"></script>
+    <script src="assets/js/custom/http.js"></script>
+    <script src="assets/js/custom/users.js"></script>
+</head>
+
+<body id="users">
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="avatar avatar-lg bg-warning me-4">
+                        <span id="txtAvatar" class="avatar-content"></span>
+                    </div>
+                    <h4 id="txtName">
+
+                    </h4>
+                    <h6 id="txtMobile"></h6>
+
+                    <hr class="mb-0">
+
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="dashboard.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="branches.html" class='sidebar-link'>
+                                <i class="bi bi bi-shop"></i>
+                                <span>Branches</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a href="users.html" class='sidebar-link'>
+                                <i class="bi bi-person"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="complaint.html" class='sidebar-link'>
+                                <i class="iconly-boldBookmark"></i>
+                                <span>Complaints</span>
+                            </a>
+                        </li>
+                        <li id="menuCompanySettings" class="sidebar-item" >
+                            <a href="dashboard.html" class='sidebar-link'>
+                                <i class="bi bi-home"></i>
+                                <span>Company Settings</span>
+                            </a>
+                        </li>
+						<li id="menuCompanySettings" class="sidebar-item" >
+                            <a href="notification.html" class='sidebar-link'>
+                                <i class="bi bi-bell"></i>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                        <li id="menuLogout" class="sidebar-item" >
+                            <div style="cursor: pointer;" class='sidebar-link'>
+                                <i class="bi bi-door-closed-fill"></i>
+                                <span>Logout</span>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <footer>
+                        <div class="footer clearfix mb- text-muted">
+                            <div style="text-align:center">
+                                <p>2022 &copy; Cybvegit</p>
+                            </div>
+
+                        </div>
+                    </footer>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Users</h3>
+
+            </div>
+            <div class="page-content">
+                <section class="row">
+
+                    <button
+                        style="margin-left:6px;  margin-bottom:10px;width:150px;height:35px;display: inline-block;vertical-align: middle;line-height: normal;"
+                        id="btnCreateUser" class="btn btn-primary btn-block btn-s shadow-s mt-4" data-bs-toggle="modal"
+                        data-bs-target="#inlineForm">Create User
+                    </button>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: row;">
+                                <div class="dropdown">
+                                    <label style="margin-bottom: 20px; margin-right: 20px;">Branch</label>
+                                    <select   id="dropdownBranch" style="width:187px;"
+                                        class="select-container btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        >
+
+                                    </select>
+
+                                    <label
+                                        style="margin-bottom: 20px; margin-right: 20px;margin-left: 20px;">Role</label>
+                                    <select id="dropdownRole" style="width:187px;"
+                                        class="select-container btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        >
+
+                                    </select>
+                                    <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> -->
+                                    <!-- <li><a class="dropdown-item" href="#" value="1" >Action</a></li> -->
+                                    <!-- <li><a class="dropdown-item" href="#" value="2" >Another action</a></li> -->
+                                    <!-- <li><a class="dropdown-item" href="#" value="2" >Something else here</a></li> -->
+                                    <!-- </ul> -->
+                                </div>
+
+
+                            </div>
+                            <table class="table" id="dtUserTable">
+                                <thead>
+                                    <tr>
+
+                                        <!-- <th style="width:190px; color:#607080;text-decoration:none;">Branch Name</th> -->
+                                        <th style="color:#607080;text-decoration:none;">Name</th>
+                                        <th>Mobile</th>
+                                        <th>Cnic</th>
+                                        <th>Address</th>
+                                        <th>LoginId</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody id="dtUsers">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal fade text-left" id="inlineForm" tabindex="-1000" role="dialog-centered"
+                        aria-labelledby="myModalLabel33" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="myModalLabel33">Create User</h6>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <i data-feather="x">Close</i>
+                                    </button>
+                                </div>
+
+                                <div id="modelBody" class="modal-body" style="display:flex; flex-direction: column;">
+
+                                    <div style="display:flex; height: fit-content;  flex-direction:row; width: 100%;">
+                                        <div style="display:flex; flex-direction:column; width: 300px;">
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Full Name</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input style="font-size: 12px;margin-left: 10px;" type="text"
+                                                            class="form-control" placeholder="First Name"
+                                                            id="txtFirstName">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-person"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Registration Id</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" style="font-size: 12px;margin-left: 10px;"
+                                                            class="form-control" placeholder="Reg Id"
+                                                            id="txtRegId">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-person"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Mobile
+                                                    No</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" style="font-size: 12px;margin-left: 10px;"
+                                                            class="form-control" placeholder="Mobile Number"
+                                                            id="txtMobileNo">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-123"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-123"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M2.873 11.297V4.142H1.699L0 5.379v1.137l1.64-1.18h.06v5.961h1.174Zm3.213-5.09v-.063c0-.618.44-1.169 1.196-1.169.676 0 1.174.44 1.174 1.106 0 .624-.42 1.101-.807 1.526L4.99 10.553v.744h4.78v-.99H6.643v-.069L8.41 8.252c.65-.724 1.237-1.332 1.237-2.27C9.646 4.849 8.723 4 7.308 4c-1.573 0-2.36 1.064-2.36 2.15v.057h1.138Zm6.559 1.883h.786c.823 0 1.374.481 1.379 1.179.01.707-.55 1.216-1.421 1.21-.77-.005-1.326-.419-1.379-.953h-1.095c.042 1.053.938 1.918 2.464 1.918 1.478 0 2.642-.839 2.62-2.144-.02-1.143-.922-1.651-1.551-1.714v-.063c.535-.09 1.347-.66 1.326-1.678-.026-1.053-.933-1.855-2.359-1.845-1.5.005-2.317.88-2.348 1.898h1.116c.032-.498.498-.944 1.206-.944.703 0 1.206.435 1.206 1.07.005.64-.504 1.106-1.2 1.106h-.75v.96Z" />
+                                                                </svg></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Cnic No</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="text" class="form-control"
+                                                            style="font-size: 12px;margin-left: 10px;"
+                                                            placeholder="CNIC Number" id="txtCnicNo">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-123"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor" class="bi bi-123"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M2.873 11.297V4.142H1.699L0 5.379v1.137l1.64-1.18h.06v5.961h1.174Zm3.213-5.09v-.063c0-.618.44-1.169 1.196-1.169.676 0 1.174.44 1.174 1.106 0 .624-.42 1.101-.807 1.526L4.99 10.553v.744h4.78v-.99H6.643v-.069L8.41 8.252c.65-.724 1.237-1.332 1.237-2.27C9.646 4.849 8.723 4 7.308 4c-1.573 0-2.36 1.064-2.36 2.15v.057h1.138Zm6.559 1.883h.786c.823 0 1.374.481 1.379 1.179.01.707-.55 1.216-1.421 1.21-.77-.005-1.326-.419-1.379-.953h-1.095c.042 1.053.938 1.918 2.464 1.918 1.478 0 2.642-.839 2.62-2.144-.02-1.143-.922-1.651-1.551-1.714v-.063c.535-.09 1.347-.66 1.326-1.678-.026-1.053-.933-1.855-2.359-1.845-1.5.005-2.317.88-2.348 1.898h1.116c.032-.498.498-.944 1.206-.944.703 0 1.206.435 1.206 1.07.005.64-.504 1.106-1.2 1.106h-.75v.96Z" />
+                                                                </svg></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Address</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input aria-multiline="true" type="text" class="form-control"
+                                                            style="font-size: 12px;margin-left: 10px;"
+                                                            placeholder="Address" id="txtAddress">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-shop"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="divEmail" style="display: none; flex-direction: row;">
+                                                <label class="labelStyle">Email</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input aria-multiline="true" type="text" class="form-control"
+                                                            style="font-size: 12px;margin-left: 10px;"
+                                                            placeholder="Email" id="txtEmail">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-envelope"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">LoginId</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input aria-multiline="true" type="text" class="form-control"
+                                                            style="font-size: 12px;margin-left: 10px;"
+                                                            placeholder="LoginId" id="txtLoginId">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-envelope"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Password</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input aria-multiline="true" type="text" class="form-control"
+                                                            style="font-size: 12px;margin-left: 10px;"
+                                                            placeholder="Passowrd" id="txtPassword">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-lock"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div style="display: flex; flex-direction: column; ">
+
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Role</label>
+                                                <div class="form-group has-icon-right">
+                                                    <div class="position-relative" class="dropdown-menu">
+                                                        <select id="crDropdownRole" type="button"
+                                                            class="form-control dropdown-toggle"
+                                                            
+                                                            style="z-index:10050;font-size: 12px;margin-left: 0px; width: 204px;"
+                                                            >
+
+                                                        </select>
+
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-caret-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Branch</label>
+                                                <div class="form-group has-icon-right">
+                                                    <div class="position-relative" class="dropdown-menu">
+                                                        <select id="crDropdownBranch" type="button"
+                                                            class="form-control dropdown-toggle"
+                                                            
+                                                            style="z-index:10050;font-size: 12px;margin-left: 0px; width: 204px;"
+                                                            >
+
+                                                        </select>
+
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-caret-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Package Type</label>
+                                                <div class="form-group has-icon-right">
+                                                    <div class="position-relative" class="dropdown-menu">
+                                                        <select id="crDropDownPackageCategory" type="button"
+                                                            class="form-control dropdown-toggle"
+                                                                                                                        style="z-index:1050 !important;;font-size: 12px;margin-left: 0px; width: 204px;"
+                                                            >
+
+                                                        </select>
+
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-caret-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Package</label>
+                                                <div class="form-group has-icon-right">
+                                                    <div class="position-relative" class="dropdown-menu">
+                                                        <select id="crDropDownPackage" type="input"
+                                                            class="form-control dropdown-toggle"
+                                                            style="z-index:10050 !important;font-size: 12px;margin-left: 0px; width: 204px;"
+                                                            >
+
+                                                        </select>
+
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-caret-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Status</label>
+                                                <div class="form-group has-icon-right">
+                                                    <div class="position-relative" class="dropdown-menu">
+                                                        <select id="crDropDownStatus" type="button"
+                                                            class="form-control dropdown-toggle"
+                                                            
+                                                            style="z-index:10050;font-size: 12px;margin-left: 0px; width: 204px;"
+                                                            >
+
+                                                        </select>
+
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-caret-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Latitude</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="number" style="font-size: 12px;width: 204px;"
+                                                            class="form-control" placeholder="latitude" id="txtLat">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-map"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;width: 300px;">
+                                                <label class="labelStyleCloumn2">Longitude</label>
+                                                <div class="form-group has-icon-left">
+                                                    <div class="position-relative">
+                                                        <input type="number" style="font-size: 12px;width: 204px;"
+                                                            class="form-control" placeholder="Longitude" id="txtLng">
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-map"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="btn-group">
+                                                <a id="btnDeleteUserAsync" class="btn btn-secondary">Delete User</a>
+                                                <a id="btnCreateUserAsync" class="btn btn-primary">Creat
+                                                    User</a>
+                                            </div>
+
+                                        </div>
+
+                                        <div
+                                            style="display: flex;  flex: 1; flex-direction: column; margin-left: 20px;">
+                                            <div style="width:75%; height:300px;" id="map"></div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+            </div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="footer clearfix mb-0 text-muted">
+                <div class="float-start">
+                    <p>2022 &copy; Cybvegit</p>
+                </div>
+
+            </div>
+        </footer>
+    </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+
+    <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <style>
+        .classDataTable {
+            text-decoration: underline;
+            cursor: pointer;
+            color: blue;
+        }
+        
+
+        .labelStyle {
+            font-size: 12px;
+            margin-top: 10px;
+            width: 70px;
+        }
+
+        .labelStyleCloumn2 {
+            font-size: 12px;
+            margin-top: 10px;
+            margin-left: 40px;
+            width: 70px;
+        }
+
+        #input {
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        #select-container {
+            z-index: 10050 !important;
+        }
+    </style>
+
+    </style>
+
+
+</body>
+
+</html>

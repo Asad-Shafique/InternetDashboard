@@ -245,7 +245,9 @@ function createBranch(obj, text) {
             showToastError(ERROR);
         });
 
+        
 }
+
 var map = null;
 var marker;
 function initMap() {

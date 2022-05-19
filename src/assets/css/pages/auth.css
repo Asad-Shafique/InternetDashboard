@@ -1,0 +1,5 @@
+body{background-color:#fff}#auth{height:100vh;overflow-x:hidden}
+#auth #auth-right{background:url(../../images/bg/4853433.jpg),linear-gradient(90deg,#2d499d,#3f5491);height:100%;
+width:70%;
+
+}#auth #auth-left{padding:0rem 25rem 10rem 25rem}#auth #auth-left .auth-title{font-size:2rem;margin-bottom:1rem}#auth #auth-left .auth-subtitle{color:#a8aebb;font-size:1rem;line-height:0rem}#auth #auth-left .auth-logo{margin-bottom:1rem}#auth #auth-left .auth-logo img{height:1rem}@media screen and (max-width:1px){#auth #auth-left{padding:0rem}}@media screen and (max-width:576px){#auth #auth-left{padding:0rem 0rem}}

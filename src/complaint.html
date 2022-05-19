@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>London Computers</title>
+    <link rel = "icon" href = 
+    "http://194.233.69.219/general/londoncomputers_logo.png" 
+    >
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <link rel="stylesheet" href="assets/vendors/iconly/bold.css">
+    <link rel="stylesheet" href="assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="shortcut icon" href="assets/images/favicon.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="assets/vendors/jquery-datatables/jquery.dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="assets/vendors/fontawesome/all.min.css">
+    <style>
+        table.dataTable td {
+            padding: 15px 8px;
+        }
+
+        .fontawesome-icons .the-icon svg {
+            font-size: 24px;
+        }
+    </style>
+
+
+
+    <script src="assets/js/custom/config.js"></script>
+    <script src="assets/js/custom/utils.js"></script>
+    <script src="assets/vendors/toastify/toastify.js"></script>
+    <script src="assets/js/extensions/toastify.js"></script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="assets/vendors/toastify/toastify.css">
+    <script src="assets/js/custom/common.js"></script>
+    <script src="assets/js/custom/http.js"></script>
+    <script src="assets/js/custom/complaint.js"></script>
+</head>
+
+<body id="complaint">
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="avatar avatar-lg bg-warning me-4">
+                        <span id="txtAvatar" class="avatar-content"></span>
+                    </div>
+                    <h4 id="txtName">
+
+                    </h4>
+                    <h6 id="txtMobile"></h6>
+
+                    <hr class="mb-0">
+
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+
+                        <li class="sidebar-item  ">
+                            <a href="dashboard.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="branches.html" class='sidebar-link'>
+                                <i class="bi bi bi-shop"></i>
+                                <span>Branches</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="users.html" class='sidebar-link'>
+                                <i class="bi bi-person"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item active">
+                            <a href="complaint.html" class='sidebar-link'>
+                                <i class="iconly-boldBookmark"></i>
+                                <span>Complaints</span>
+                            </a>
+                        </li>
+                        <li id="menuCompanySettings" class="sidebar-item" >
+                            <a href="dashboard.html" class='sidebar-link'>
+                                <i class="bi bi-home"></i>
+                                <span>Company Settings</span>
+                            </a>
+                        </li>
+						<li id="menuCompanySettings" class="sidebar-item" >
+                            <a href="notification.html" class='sidebar-link'>
+                                <i class="bi bi-bell"></i>
+                                <span>Notifications</span>
+                            </a>
+                        </li>
+                        <li id="menuLogout" class="sidebar-item" >
+                            <div style="cursor: pointer;" class='sidebar-link'>
+                                <i class="bi bi-door-closed-fill"></i>
+                                <span>Logout</span>
+                            </div>
+                        </li>
+
+
+                    </ul>
+                    <footer>
+                        <div class="footer clearfix mb- text-muted">
+                            <div style="text-align:center">
+                                <p>2022 &copy; Cybvegit</p>
+                            </div>
+
+                        </div>
+                    </footer>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+
+            <div class="page-heading">
+                <h3>Complaints</h3>
+
+            </div>
+            <div class="page-content">
+                <section class="row">
+
+                    <!-- <button
+                        style="margin-left:6px;  margin-bottom:10px;width:150px;height:35px;display: inline-block;vertical-align: middle;line-height: normal;"
+                        id="btnCreateUser" class="btn btn-primary btn-block btn-s shadow-s mt-4" data-bs-toggle="modal"
+                        data-bs-target="#inlineForm">Create User
+                    </button> -->
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div style="display: flex; flex-direction: row;">
+                                <div class="dropdown">
+                                    <label style="margin-bottom: 20px; margin-right: 20px;">Branch</label>
+                                    <select id="dropdownBranch" style="width:150px;"
+                                        class="select-container btn btn-secondary dropdown-toggle" type="button">
+
+                                    </select>
+
+                                    <label style="margin-bottom: 20px; margin-right: 20px;margin-left: 20px;">Complaint
+                                        Type</label>
+                                    <select id="dropDownComplaintTypes" style="width:150px;"
+                                        class="select-container btn btn-secondary dropdown-toggle" type="button">
+
+                                    </select>
+                                    <label
+                                        style="margin-bottom: 20px; margin-right: 20px;margin-left: 20px;">Status</label>
+                                    <select id="dropdownStatus" style="width:150px;"
+                                        class="select-container btn btn-secondary dropdown-toggle" type="button">
+
+                                    </select>
+                                    <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"> -->
+                                    <!-- <li><a class="dropdown-item" href="#" value="1" >Action</a></li> -->
+                                    <!-- <li><a class="dropdown-item" href="#" value="2" >Another action</a></li> -->
+                                    <!-- <li><a class="dropdown-item" href="#" value="2" >Something else here</a></li> -->
+                                    <!-- </ul> -->
+                                </div>
+
+
+                            </div>
+                            <table class="table" id="dtComplaintTable">
+                                <thead>
+                                    <tr>
+
+                                        <!-- <th style="width:190px; color:#607080;text-decoration:none;">Branch Name</th> -->
+                                        <th style="color:#607080;text-decoration:none;width: 200px; font-size: 14px;">
+                                            Customer Name</th>
+                                        <th style="width: 200px; font-size: 14px">Customer Mobile</th>
+                                        <th style="width: 200px; font-size: 14px">Complaint Address</th>
+                                        <th style="width: 200px; font-size: 14px">Complaint Type</th>
+                                        <th style="width: 200px; font-size: 14px;">Complaint Desc</th>
+                                        <th style="width: 200px; font-size: 14px">Date Time</th>
+                                        <th style="width: 200px; font-size: 14px">Technician Name</th>
+                                        <th style="width: 200px; font-size: 14px">Status</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody id="dtComplaint">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal fade text-left" id="inlineForm" tabindex="-1000" role="dialog-centered"
+                        aria-labelledby="myModalLabel33" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"
+                            role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h6 class="modal-title" id="myModalLabel33">Complaint Details</h6>
+                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <i data-feather="x">Close</i>
+                                    </button>
+                                </div>
+
+                                <div id="modelBody" class="modal-body" style="display:flex; flex-direction: column;">
+
+                                    <div style="display:flex; height: fit-content;  flex-direction:row; width: 100%;">
+                                        <div style="display:flex; flex-direction:column; width: 450px; ">
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Customer Name</label>
+                                                <div class="form-group has-icon-left">
+
+                                                    <label id="txtCustName" class="labelStyleValue"></label>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label  class="labelStyle">Customer Mobile</label>
+                                                <div class="form-group has-icon-left">
+
+                                                    <label id="txtCustMobileNo" class="labelStyleValue"></label>
+
+                                                </div>
+                                            </div>
+
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label  class="labelStyle">Customer Address</label>
+                                                <div class="form-group has-icon-left">
+
+                                                    <label  id="txtCustAddress" class="labelStyleValue"></label>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label  class="labelStyle">Complaint Type</label>
+                                                <div class="form-group has-icon-left">
+
+                                                    <label id="txtComplaintType" class="labelStyleValue"></label>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Complaint</label>
+                                                <div class="form-group has-icon-left">
+
+                                                    <label id="txtComplaint"  class="labelStyleValue"></label>
+                                                       
+                                                </div>
+                                            </div>
+                                            <div id="imageDiv" style="display: flex; flex-direction: column;">
+                                                <label class="labelStyle">Images</label>
+                                                <div class="card-body">
+                                                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                                      <div class="carousel-inner">
+                                                        <!-- <div class="carousel-item active">
+                                                          <img src="assets/images/samples/banana.jpg" class="d-block w-100" alt="...">
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="assets/images/samples/banana.jpg" class="d-block w-100" alt="...">
+                                                          </div> -->
+                                                        
+                                                      </div>
+                                                      <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Previous</span>
+                                                      </a>
+                                                      <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                        <span class="visually-hidden">Next</span>
+                                                      </a>
+                                                    </div>
+                                                  </div>
+                                                    </div>
+
+
+
+                                            <!--END DIV-->
+                                        </div>
+
+                                        <div style="display:flex; flex-direction:column; width: 220px; ">
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Status</label>
+                                                <div>
+
+                                                    <span id="txtStatus" class='badge bg-success labelStyleSpan'>Resolved</span>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Technician Name</label>
+                                                <div>
+
+                                                    <span id="txtTechnicianName"  class='badge bg-info labelStyleSpan'>Hamza Shafique</span>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Complaint DateTime</label>
+                                                <div>
+
+                                                    <span id="txtComaplaintDateTime"  class='badge bg-secondary labelStyleSpan'>4/3/2022 11:08:40
+                                                        PM</span>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Accepted DateTime</label>
+                                                <div>
+
+                                                    <span id="txtAcceptedDateTime" class='badge bg-secondary labelStyleSpan'>4/3/2022 11:08:40
+                                                        PM</span>
+
+                                                </div>
+                                            </div>
+                                            <div style="display: flex; flex-direction: row;">
+                                                <label class="labelStyle">Change Status</label>
+                                                <div class="form-group has-icon-right">
+                                                    <div class="position-relative" class="dropdown-menu">
+                                                        <select id="dropdownStatusModal" type="button"
+                                                            class="form-control dropdown-toggle"
+                                                            style="margin-top: 10px; z-index:1050 !important;;font-size: 12px;margin-left: 0px; width: 120px;">
+
+                                                        </select>
+
+                                                        <div class="form-control-icon">
+                                                            <i style="margin-left: 5px;" class="bi bi-caret-down"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div style="display: flex; flex-direction: row;">
+                                                <button class="btn btn-primary btn-block btn-s shadow-s mt-4"
+                                                    style="margin-left:6px; font-size: 14px;  margin-bottom:10px;width:200px;height:35px;display: inline-block;vertical-align: middle;line-height: normal;"
+                                                    id="btnUpdateComplaint" data-bs-target="#inlineForm">Update
+                                                    Complaint
+                                                </button>
+                                            </div>
+
+
+                                        </div>
+                                        <div
+                                            style="display:flex; flex-direction:column; margin-left: 10px; width: 100%; ">
+                                        
+                                            <div style="width:75%; height:300px;" id="map"></div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                </section>
+            </div>
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2022 &copy; Cybvegit</p>
+                    </div>
+
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="assets/js/pages/dashboard.js"></script>
+
+    <script src="assets/js/mazer.js"></script>
+    <script src="assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/vendors/jquery/jquery.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/jquery.dataTables.min.js"></script>
+    <script src="assets/vendors/jquery-datatables/custom.jquery.dataTables.bootstrap5.min.js"></script>
+    <script src="assets/vendors/fontawesome/all.min.js"></script>
+   
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <style>
+        .classDataTable {
+            text-decoration: underline;
+            cursor: pointer;
+            color: blue;
+        }
+
+        .labelStyle {
+            font-size: 12px;
+            margin-top: 10px;
+            width: 120px;
+            font-weight: bold;
+        }
+        .labelStyleSpan {
+            font-size: 12px;
+            margin-top: 10px;
+            width: 140px;
+            font-weight: bold;
+        }
+
+        .labelStyleValue {
+            font-size: 12px;
+            margin-top: 10px;
+            width: 300px;
+
+        }
+
+        .labelStyleCloumn2 {
+            font-size: 12px;
+            margin-top: 10px;
+            margin-left: 40px;
+            width: 70px;
+        }
+
+        #input {
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        #select-container {
+            z-index: 10050 !important;
+        }
+
+        .elipsisText {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100px;
+
+        }
+
+        /* td {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 100px;
+        } */
+    </style>
+
+    </style>
+
+
+</body>
+
+</html>
